@@ -1,6 +1,11 @@
 package uk.gov.justice.schema.catalog.generation;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import uk.gov.justice.schema.catalog.CatalogObjectFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A simple cheap way of avoiding having to use a dependency injection framework in the project.
@@ -26,7 +31,7 @@ public class GenerationObjectFactory extends CatalogObjectFactory {
      * @return a new instance of {@link SchemaIdParser}
      */
     public SchemaIdParser schemaIdParser() {
-        return new SchemaIdParser(urlConverter());
+        return new SchemaIdParser(urlConverter(), getLogger(SchemaIdParser.class));
     }
 
     /**
