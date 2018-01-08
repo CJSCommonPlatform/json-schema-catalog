@@ -54,4 +54,43 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>generator-plugin</artifactId>
+                <groupId>uk.gov.justice.maven.generator</groupId>
+                <version>${generator-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>schema-catalog-generation</id>
+                        <configuration>
+                            <generatorName>uk.gov.justice.schema.catalog.generation.maven.MavenCatalogGeneratorFactory</generatorName>
+                            <parserName>uk.gov.justice.schema.catalog.generation.io.parser.ListOfUriParser</parserName>
+                            <sourceDirectory>src/test/resources/json/schema</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/generated-test-resources</outputDirectory>
+                            <includes>
+                                <include>**/*.json</include>
+                            </includes>
+                            <generatorProperties implementation="uk.gov.justice.schema.catalog.generation.maven.CatalogGeneratorProperties">
+                                <catalogName>${project.artifactId}</catalogName>
+                                <jsonSchemaPath>json/schema/</jsonSchemaPath>
+                            </generatorProperties>
+                        </configuration>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>uk.gov.justice.schema</groupId>
+                        <artifactId>catalog-generation</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
