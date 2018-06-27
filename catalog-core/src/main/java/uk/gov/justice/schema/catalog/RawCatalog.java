@@ -43,12 +43,6 @@ public class RawCatalog {
     }
 
 
-
-    public void updtateCatalog(Collection<Path> paths) {
-        catalogUpdater.updtateRawCatalog(schemaIdsToRawJsonSchemaCache, paths);
-
-    }
-
     /**
      * Initializes the cache of raw json schemas by scanning the classpath and
      * loading all json schemas it finds.
@@ -65,20 +59,10 @@ public class RawCatalog {
      */
     public Optional<String> getRawJsonSchema(final String schemaId) {
 
-        //updateCatalogSchemaCache(schemaId);
         return ofNullable(schemaIdsToRawJsonSchemaCache.get(schemaId));
     }
 
-/*    private void updateCatalogSchemaCache(final String schemaId) {
-        if(schemaIdsToRawJsonSchemaCache.get(schemaId) == null){
-            try {
-                final Optional<Pair<String, String>> schemaDetails = schemaIdAndUriParser.parse(new URL(schemaId));
-                if (schemaDetails.isPresent()) {
-                    schemaIdsToRawJsonSchemaCache.put(schemaDetails.get().getKey(), schemaDetails.get().getValue());
-                }
-            } catch (MalformedURLException e) {
-                logger.error(e.getMessage());
-            }
-        }
-    }*/
+    public void updateCatalogSchemaCache(final Path basePath, final Collection<Path> paths) {
+        catalogUpdater.updtateRawCatalog(schemaIdsToRawJsonSchemaCache, basePath, paths);
+    }
 }
