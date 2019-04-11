@@ -4,13 +4,18 @@ import static com.jayway.jsonassert.JsonAssert.with;
 import static org.hamcrest.CoreMatchers.is;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CatalogIT {
 
     private final Catalog catalog = new CatalogObjectFactory().catalog();
+    private static final Logger logger = LoggerFactory.getLogger(CatalogIT.class);
 
     @Test
     public void shouldMapSchemasOnClasspathToTheirIds() throws Exception {
+
+        dodgyMethod();
 
         final String id_1 = "http://justice.gov.uk/standards/address.json";
         final String json_1 = catalog.getSchema(id_1).get().toString();
@@ -43,5 +48,11 @@ public class CatalogIT {
                 .assertThat("$.allOf[0].type", is("object"))
                 .assertThat("$.allOf[1].allOf[0].$ref", is("#/definitions/complex_address"))
         ;
+    }
+
+    public void dodgyMethod() {
+        String DODGYVARIABLE = "dodgy";
+        logger.info("dodgy: " + DODGYVARIABLE);
+        System.out.println("Invoke dodgy method");
     }
 }
