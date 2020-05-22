@@ -1,4 +1,14 @@
 # Json Schema Catalog
+
+##Deprecated
+
+_**This project has moved to be a sub-project of [Framework Libraries](https://github.com/CJSCommonPlatform/framework-libraries) and is located [here](https://github.com/CJSCommonPlatform/framework-libraries/blob/master/json-schema-catalog/README.md)**_
+
+_**Pull requests against this project have been disabled. Please contact one of the project owners for emergency bug fixes on this version**_
+
+---
+
+
 This library is intended as a json version of XML Catalogs: 
 https://www.oasis-open.org/committees/entity/spec-2001-08-06.html
 
